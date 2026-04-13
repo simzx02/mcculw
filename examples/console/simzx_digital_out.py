@@ -71,13 +71,28 @@ def run_example():
         # Output the value to the port
         ul.d_out(board_num, port.type, port_value)
         
-        bit_num = 1  #Using DIO1
-        bit_value = 0 #0-off(low), 1-on(high)
+        #bit_num = 1  #Using DIO1
+        #bit_value = 0 #0-off(low), 1-on(high)
 
-        print('Setting', port.type.name, 'bit', bit_num, 'to', bit_value)
+        #print('Setting', port.type.name, 'bit', bit_num, 'to', bit_value)
 
-        # Output the value to the bit
-        ul.d_bit_out(board_num, port.type, bit_num, bit_value)
+        ## Output the value to the bit
+        #ul.d_bit_out(board_num, port.type, bit_num, bit_value)
+        # 1. Define your specific bit and values
+        bit_num = 1    # DIO1 maps to bit 1 
+        bit_value = 0  # 0 for OFF (Low), 1 for ON (High)
+
+        print(f'Turning LED ON (Setting {port.type.name} bit {bit_num} to 1)')
+        # 2. Output High to turn the LED ON
+        ul.d_bit_out(board_num, port.type, bit_num, bit_value=1)
+
+        # 3. Keep it on for a few seconds
+        import time
+        time.sleep(5) 
+
+        print(f'Turning LED OFF (Setting {port.type.name} bit {bit_num} to 0)')
+        # 4. Output Low to turn the LED OFF
+        ul.d_bit_out(board_num, port.type, bit_num, bit_value=0)
     except Exception as e:
         print('\n', e)
     finally:
