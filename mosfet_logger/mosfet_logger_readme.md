@@ -21,6 +21,7 @@ Replace DIO1 with TMR0
 ![Schematic](Schematic.png)
 
 **Remarks:**
-blue line: Basic circuit for sim_digital_out.py
-purple line: with CH0H and CH0L differential mode modified circuit for sim_toggle_data_read.py
-DIO1 to TMR0: circuit for sim_toggle_timer_read.py
+
+- blue line: Basic circuit for sim_digital_out.py
+- purple line: with CH0H and CH0L differential mode modified circuit for sim_toggle_data_read.py
+- DIO1 to TMR0: circuit for sim_toggle_timer_read.py
