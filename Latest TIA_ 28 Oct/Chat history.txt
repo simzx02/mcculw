@@ -1,0 +1,21 @@
+Hi Junseo! Your PCB TIA had arrived at kaist. Did you mind to share the latest schematic (and code, if any) with me?
+I plan to test it deeply after my midterms.
+Thank you!5 repliesJun Seo Lee  [1:06 PM]
+Here's the schematic! We probably won't need the MUX, so you can just use the TIA section.
+The pin names are labeled on the silkscreen. Connect the CE pin to the CE electrode and the output pin to the USB-1808X to read the TIA output voltage. You only need to connect VDD, VSS, and AGND from your board.
+I also reduced the feedback resistor to 390 Ω this time, so keeping the TIA connected to CE throughout the entire process instead of switching between AGND and TIA shouldn't be a big issue!
+I'll also send you my current code. It's a bit long because it includes digital pin control, but you can ignore that part since your board can already control the gate and drain.
+The basic mechanism is pretty simple: the code converts the TIA output voltage into current and plots it in real time. During the +0.8 V / −0.2 V pulse sequence, it integrates the current starting when −0.2 V is applied and uses the accumulated charge as the threshold for stopping deposition.
+If you have any questions, feel free to let me know! I'll try to get back to you as quickly as possible!!
+Also, I think there should be 5 boards in total. It would be great if you could keep around 2 boards and send the other 3 to GIST. Thanks!!2 attachments TIA_deposition_1pixel.pyPythonSim Zhong Xian  [2:13 PM]
+Is that okay if Hyoeun brings them to gist by next monday? Or you need to get them as soon as ppossible, please let me know! (edited) 
+Jun Seo Lee  [3:09 PM]
+Got it! Thank you!!
+Jun Seo Lee  [7:58 PM]
+I updated the code, so I'll send you the latest version!
+There are two separate codes, so let me briefly explain what each one does.
+The 'baseline_measuerment' code is for measuring the baseline. Since we're integrating the current to calculate the charge, having an accurate 0 V reference is important. When using the TIA in an electrolyte environment, the TIA output might not be exactly 0 V even when 0 V is applied. So this code measures that offset.
+The 'TIA_deposition_1pixel' code is for the actual deposition process. It follows the mechanism I explained earlier. The part highlighted in the attached image is where you set the baseline. You just need to enter the value measured from the first code and then run the deposition code.
+Ideally, it would be best to measure the baseline for each pixel since it could vary slightly between pixels. But I think measuring it for the first pixel and using the same baseline for the others shouldn't introduce a significant error.
+Also, feel free to modify the deposition code to fit your setup! I don't think there should be any major issues with that.
+Take a look, and feel free to ask me anytime if anything is unclear!!
